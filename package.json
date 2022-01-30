@@ -1,0 +1,34 @@
+{
+  "name": "@pdw.io/viewport-observer",
+  "version": "0.0.1",
+  "description": "Utility class to aid with keeping track of the (visual) viewport.",
+  "main": "dist/main.min.js",
+  "types": "dist/main.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pimdewit/viewport-observer.git"
+  },
+  "keywords": [
+    "viewport",
+    "observer",
+    "typescript"
+  ],
+  "author": "Pim de Wit <https://pim.dev>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && google-closure-compiler --js=dist/main.js > dist/main.min.js"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.5",
+    "google-closure-compiler": "^20211201.0.0",
+    "typescript": "^4.5.4"
+  },
+  "peerDependencies": {
+    "@pdw.io/eventdispatcher": "^2.0.2",
+    "lodash-es": "^4.17.21"
+  },
+  "dependencies": {
+    "@pdw.io/eventdispatcher": "^2.0.2",
+    "lodash-es": "^4.17.21"
+  }
+}
