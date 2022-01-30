@@ -20,9 +20,6 @@ enum ViewportObserverVisibleAreaProperty {
   SCALE,
 }
 
-/**
- * Observe changes of a target element.
- */
 class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
   /** Canvas dimensions. [width, height, pixelDensity, scale]. */
   readonly dimensions = new Float32Array([320, 150, 1, 1]);
