@@ -1,18 +1,18 @@
-import { EventDispatcher } from '@pdw.io/eventdispatcher';
+import { EventDispatcher } from '@pdw.io/event-dispatcher';
 import { debounce } from 'lodash-es';
 
-export enum ViewportObserverEventName {
+export enum ViewportEventName {
   RESIZE,
   SCROLL,
 }
 
-enum ViewportObserverDimensionProperty {
+enum ViewportDimensionProperty {
   WIDTH,
   HEIGHT,
   PIXEL_DENSITY,
 }
 
-enum ViewportObserverVisibleAreaProperty {
+enum ViewportVisibleAreaProperty {
   X,
   Y,
   WIDTH,
@@ -20,7 +20,7 @@ enum ViewportObserverVisibleAreaProperty {
   SCALE,
 }
 
-class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
+class Viewport extends EventDispatcher<ViewportEventName> {
   /** Canvas dimensions. [width, height, pixelDensity, scale]. */
   readonly dimensions = new Float32Array([320, 150, 1, 1]);
   /** Rect currently visible in the viewport. [x, y, width, height, scale]. */
@@ -32,15 +32,15 @@ class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
   resizeDebounce = 200;
 
   get width() {
-    return this.dimensions[ViewportObserverDimensionProperty.WIDTH];
+    return this.dimensions[ViewportDimensionProperty.WIDTH];
   }
 
   get height() {
-    return this.dimensions[ViewportObserverDimensionProperty.HEIGHT];
+    return this.dimensions[ViewportDimensionProperty.HEIGHT];
   }
 
   get pixelDensity() {
-    return this.dimensions[ViewportObserverDimensionProperty.PIXEL_DENSITY];
+    return this.dimensions[ViewportDimensionProperty.PIXEL_DENSITY];
   }
 
   get aspect() {
@@ -48,30 +48,30 @@ class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
   }
 
   get visualX() {
-    return this.visibleArea[ViewportObserverVisibleAreaProperty.X];
+    return this.visibleArea[ViewportVisibleAreaProperty.X];
   }
 
   get visualY() {
-    return this.visibleArea[ViewportObserverVisibleAreaProperty.Y];
+    return this.visibleArea[ViewportVisibleAreaProperty.Y];
   }
 
   get visualWidth() {
-    return this.visibleArea[ViewportObserverVisibleAreaProperty.WIDTH];
+    return this.visibleArea[ViewportVisibleAreaProperty.WIDTH];
   }
 
   get visualHeight() {
-    return this.visibleArea[ViewportObserverVisibleAreaProperty.HEIGHT];
+    return this.visibleArea[ViewportVisibleAreaProperty.HEIGHT];
   }
 
   get zoom() {
-    return this.visibleArea[ViewportObserverVisibleAreaProperty.SCALE];
+    return this.visibleArea[ViewportVisibleAreaProperty.SCALE];
   }
 
   private readonly onResize = () => this.resizeDebounced();
 
   private readonly onViewportScroll = () => {
     this.calculateVisualArea();
-    this.dispatchEvent(ViewportObserverEventName.SCROLL);
+    this.dispatchEvent(ViewportEventName.SCROLL);
   };
 
   private calculateVisualArea() {
@@ -84,11 +84,11 @@ class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
     } = window.visualViewport;
 
     const y = height - window.innerHeight + offsetTop;
-    this.visibleArea[ViewportObserverVisibleAreaProperty.X] = offsetLeft;
-    this.visibleArea[ViewportObserverVisibleAreaProperty.Y] = y;
-    this.visibleArea[ViewportObserverVisibleAreaProperty.WIDTH] = width;
-    this.visibleArea[ViewportObserverVisibleAreaProperty.HEIGHT] = height;
-    this.visibleArea[ViewportObserverVisibleAreaProperty.SCALE] = scale;
+    this.visibleArea[ViewportVisibleAreaProperty.X] = offsetLeft;
+    this.visibleArea[ViewportVisibleAreaProperty.Y] = y;
+    this.visibleArea[ViewportVisibleAreaProperty.WIDTH] = width;
+    this.visibleArea[ViewportVisibleAreaProperty.HEIGHT] = height;
+    this.visibleArea[ViewportVisibleAreaProperty.SCALE] = scale;
   }
 
   readonly resize = (
@@ -97,14 +97,14 @@ class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
     pixelDensity = window.devicePixelRatio
   ) => {
     const _pixelDensity = Math.min(pixelDensity, this.maxPixelDensity);
-    this.dimensions[ViewportObserverDimensionProperty.WIDTH] = width;
-    this.dimensions[ViewportObserverDimensionProperty.HEIGHT] = height;
-    this.dimensions[ViewportObserverDimensionProperty.PIXEL_DENSITY] =
+    this.dimensions[ViewportDimensionProperty.WIDTH] = width;
+    this.dimensions[ViewportDimensionProperty.HEIGHT] = height;
+    this.dimensions[ViewportDimensionProperty.PIXEL_DENSITY] =
       _pixelDensity;
 
     this.calculateVisualArea();
 
-    this.dispatchEvent(ViewportObserverEventName.RESIZE);
+    this.dispatchEvent(ViewportEventName.RESIZE);
   };
 
   private readonly resizeDebounced = debounce(this.resize, this.resizeDebounce);
@@ -137,4 +137,4 @@ class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
   }
 }
 
-export { ViewportObserver };
+export { Viewport };

@@ -1,9 +1,9 @@
-import { EventDispatcher } from "@pdw.io/eventdispatcher";
-export enum ViewportObserverEventName {
+import { EventDispatcher } from "@pdw.io/event-dispatcher";
+export enum ViewportEventName {
     RESIZE = 0,
     SCROLL = 1
 }
-export class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
+export class Viewport extends EventDispatcher<ViewportEventName> {
     /** Canvas dimensions. [width, height, pixelDensity, scale]. */
     readonly dimensions: Float32Array;
     /** Rect currently visible in the viewport. [x, y, width, height, scale]. */
