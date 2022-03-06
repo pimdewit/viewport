@@ -12,7 +12,7 @@
     ]
   },
   "include": [
-    "main.ts"
+    "src/main.ts"
   ],
   "exclude": ["dist/"]
 }

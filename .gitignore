@@ -1,6 +1,7 @@
 .depcache.json
 .DS_Store
 .idea
+.parcel-cache
 build
 github-token.txt
 node_modules

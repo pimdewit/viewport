@@ -1,12 +1,9 @@
-import { EventDispatcher } from '@pdw.io/eventdispatcher';
-export declare enum ViewportObserverEventName {
+import { EventDispatcher } from "@pdw.io/eventdispatcher";
+export enum ViewportObserverEventName {
     RESIZE = 0,
     SCROLL = 1
 }
-/**
- * Observe changes of a target element.
- */
-declare class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
+export class ViewportObserver extends EventDispatcher<ViewportObserverEventName> {
     /** Canvas dimensions. [width, height, pixelDensity, scale]. */
     readonly dimensions: Float32Array;
     /** Rect currently visible in the viewport. [x, y, width, height, scale]. */
@@ -25,14 +22,11 @@ declare class ViewportObserver extends EventDispatcher<ViewportObserverEventName
     get visualWidth(): number;
     get visualHeight(): number;
     get zoom(): number;
-    private readonly onResize;
-    private readonly onViewportScroll;
-    private calculateVisualArea;
     readonly resize: (width?: number, height?: number, pixelDensity?: number) => void;
-    private readonly resizeDebounced;
     addEventListeners(): void;
     removeEventListeners(): void;
     initialise(): void;
     dispose(): void;
 }
-export { ViewportObserver };
+
+//# sourceMappingURL=viewport.d.ts.map
