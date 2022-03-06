@@ -600,10 +600,10 @@
     chrome-trace-event "^1.0.2"
     nullthrows "^1.1.1"
 
-"@pdw.io/eventdispatcher@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@pdw.io/eventdispatcher/-/eventdispatcher-2.0.2.tgz#5a8b59e311dc44157edf2d8e64efd0a09bf00313"
-  integrity sha512-34LIbnx6HM/xstjFCERWfHQGe7DGM22ghkUEFvewsoSW6+Kowvu11zKtS0NsFzACUnti/v0cLOCUY9OfEqAV6Q==
+"@pdw.io/event-dispatcher@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@pdw.io/event-dispatcher/-/event-dispatcher-1.0.0.tgz#42a551dca8c6c665ec9319f96cfac9e4fded925d"
+  integrity sha512-wwOkKb+mgZZV6TCBZ2zm6p2AZIwdXl2r8OEkXYY6yA5nSFDfLonBczudiMF6qAqzH/BKW+3lxvy0kkDc5RTXYQ==
 
 "@swc/helpers@^0.2.11":
   version "0.2.14"
@@ -1051,11 +1051,6 @@ lmdb@^2.0.2:
     node-gyp-build "^4.2.3"
     ordered-binary "^1.2.4"
     weak-lru-cache "^1.2.2"
-
-lodash-es@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
-  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
